@@ -68,135 +68,156 @@
 }
 
 :root {
-  --color-background: rgb(255, 255, 255);
-  --color-foreground: rgb(5, 8, 24);
+  --color-background: rgb(250, 250, 250);
+  --color-foreground: rgb(17, 24, 39);
 
   --color-card: rgb(255, 255, 255);
-  --color-card-foreground: rgb(5, 8, 24);
+  --color-card-foreground: rgb(17, 24, 39);
 
   --color-popover: rgb(255, 255, 255);
-  --color-popover-foreground: rgb(5, 8, 24);
+  --color-popover-foreground: rgb(17, 24, 39);
 
-  --color-primary: rgb(0, 102, 255);
-  --color-primary-foreground: rgb(243, 245, 255);
+  --color-primary: rgb(59, 130, 246); /* Tailwind blue-500 */
+  --color-primary-foreground: rgb(255, 255, 255);
 
-  --color-secondary: rgb(240, 245, 250);
-  --color-secondary-foreground: rgb(27, 31, 41);
+  --color-secondary: rgb(243, 244, 246); /* Tailwind gray-100 */
+  --color-secondary-foreground: rgb(31, 41, 55); /* gray-800 */
 
-  --color-muted: rgb(240, 245, 250);
-  --color-muted-foreground: rgb(118, 125, 141);
+  --color-muted: rgb(243, 244, 246);
+  --color-muted-foreground: rgb(107, 114, 128); /* gray-500 */
 
-  --color-accent: rgb(240, 245, 250);
-  --color-accent-foreground: rgb(27, 31, 41);
+  --color-accent: rgb(229, 231, 235); /* gray-200 */
+  --color-accent-foreground: rgb(31, 41, 55);
 
-  --color-destructive: rgb(255, 59, 48);
-  --color-destructive-foreground: rgb(243, 245, 255);
+  --color-destructive: rgb(239, 68, 68); /* red-500 */
+  --color-destructive-foreground: rgb(255, 255, 255);
 
-  --color-border: rgb(231, 234, 239);
-  --color-input: rgb(231, 234, 239);
-  --color-ring: rgb(5, 8, 24);
+  --color-border: rgb(229, 231, 235);
+  --color-input: rgb(229, 231, 235);
+  --color-ring: rgb(59, 130, 246);
 
   --color-radius: 0.5rem;
 
-  --color-sidebar-background: rgb(250, 250, 250);
-  --color-sidebar-foreground: rgb(60, 61, 66);
-  --color-sidebar-primary: rgb(13, 14, 15);
-  --color-sidebar-primary-foreground: rgb(250, 250, 250);
-  --color-sidebar-accent: rgb(245, 245, 245);
-  --color-sidebar-accent-foreground: rgb(13, 14, 15);
-  --color-sidebar-border: rgb(225, 229, 235);
-  --color-sidebar-ring: rgb(88, 156, 255);
+  --color-sidebar-background: rgb(248, 250, 252); /* slate-50 */
+  --color-sidebar-foreground: rgb(31, 41, 55);
+  --color-sidebar-primary: rgb(17, 24, 39);
+  --color-sidebar-primary-foreground: rgb(255, 255, 255);
+  --color-sidebar-accent: rgb(241, 245, 249); /* slate-100 */
+  --color-sidebar-accent-foreground: rgb(17, 24, 39);
+  --color-sidebar-border: rgb(226, 232, 240); /* slate-200 */
+  --color-sidebar-ring: rgb(96, 165, 250);
 
-  --color-gradient-primary-start: rgb(0, 102, 255);
-  --color-gradient-primary-end: rgb(102, 0, 255);
-  --color-gradient-secondary-start: rgb(255, 59, 48);
-  --color-gradient-secondary-end: rgb(255, 66, 95);
-  --color-gradient-success-start: rgb(30, 193, 115);
-  --color-gradient-success-end: rgb(68, 224, 157);
-  --color-gradient-warning-start: rgb(255, 188, 28);
-  --color-gradient-warning-end: rgb(255, 142, 79);
-  --color-gradient-info-start: rgb(0, 153, 255);
-  --color-gradient-info-end: rgb(0, 204, 204);
-  --color-gradient-purple-start: rgb(102, 0, 255);
-  --color-gradient-purple-end: rgb(178, 102, 255);
+  --color-gradient-primary-start: rgb(59, 130, 246);
+  --color-gradient-primary-end: rgb(99, 102, 241);
 
-  --color-feature-red-start: rgb(255, 59, 48);
-  --color-feature-red-end: rgb(255, 66, 95);
-  --color-feature-blue-start: rgb(0, 102, 255);
-  --color-feature-blue-end: rgb(0, 153, 255);
-  --color-feature-green-start: rgb(30, 193, 115);
-  --color-feature-green-end: rgb(68, 224, 157);
-  --color-feature-yellow-start: rgb(255, 188, 28);
-  --color-feature-yellow-end: rgb(255, 142, 79);
-  --color-feature-purple-start: rgb(102, 0, 255);
-  --color-feature-purple-end: rgb(178, 102, 255);
-  --color-feature-gray-start: rgb(118, 125, 141);
-  --color-feature-gray-end: rgb(37, 40, 46);
+  --color-gradient-secondary-start: rgb(251, 113, 133); /* rose-400 */
+  --color-gradient-secondary-end: rgb(244, 63, 94); /* rose-500 */
+
+  --color-gradient-success-start: rgb(34, 197, 94);
+  --color-gradient-success-end: rgb(74, 222, 128);
+
+  --color-gradient-warning-start: rgb(251, 191, 36);
+  --color-gradient-warning-end: rgb(253, 224, 71);
+
+  --color-gradient-info-start: rgb(56, 189, 248);
+  --color-gradient-info-end: rgb(14, 165, 233);
+
+  --color-gradient-purple-start: rgb(139, 92, 246);
+  --color-gradient-purple-end: rgb(168, 85, 247);
+
+  --color-feature-red-start: rgb(239, 68, 68);
+  --color-feature-red-end: rgb(220, 38, 38);
+
+  --color-feature-blue-start: rgb(59, 130, 246);
+  --color-feature-blue-end: rgb(37, 99, 235);
+
+  --color-feature-green-start: rgb(34, 197, 94);
+  --color-feature-green-end: rgb(22, 163, 74);
+
+  --color-feature-yellow-start: rgb(251, 191, 36);
+  --color-feature-yellow-end: rgb(202, 138, 4);
+
+  --color-feature-purple-start: rgb(139, 92, 246);
+  --color-feature-purple-end: rgb(126, 34, 206);
+
+  --color-feature-gray-start: rgb(107, 114, 128);
+  --color-feature-gray-end: rgb(75, 85, 99);
 }
 html.dark {
-  --color-background: rgb(5, 8, 24);
-  --color-foreground: rgb(243, 245, 255);
+  --color-background: rgb(17, 24, 39); /* slate-900 */
+  --color-foreground: rgb(243, 244, 246); /* gray-100 */
 
-  --color-card: rgb(5, 8, 24);
-  --color-card-foreground: rgb(243, 245, 255);
+  --color-card: rgb(30, 41, 59); /* slate-800 */
+  --color-card-foreground: rgb(243, 244, 246);
 
-  --color-popover: rgb(5, 8, 24);
-  --color-popover-foreground: rgb(243, 245, 255);
+  --color-popover: rgb(30, 41, 59);
+  --color-popover-foreground: rgb(243, 244, 246);
 
-  --color-primary: rgb(243, 245, 255);
-  --color-primary-foreground: rgb(27, 31, 41);
+  --color-primary: rgb(147, 197, 253); /* blue-300 */
+  --color-primary-foreground: rgb(17, 24, 39);
 
-  --color-secondary: rgb(41, 48, 60);
-  --color-secondary-foreground: rgb(243, 245, 255);
+  --color-secondary: rgb(55, 65, 81); /* gray-700 */
+  --color-secondary-foreground: rgb(243, 244, 246);
 
-  --color-muted: rgb(41, 48, 60);
-  --color-muted-foreground: rgb(142, 151, 173);
+  --color-muted: rgb(55, 65, 81);
+  --color-muted-foreground: rgb(156, 163, 175); /* gray-400 */
 
-  --color-accent: rgb(41, 48, 60);
-  --color-accent-foreground: rgb(243, 245, 255);
+  --color-accent: rgb(51, 65, 85); /* slate-700 */
+  --color-accent-foreground: rgb(243, 244, 246);
 
-  --color-destructive: rgb(105, 29, 25);
-  --color-destructive-foreground: rgb(243, 245, 255);
+  --color-destructive: rgb(127, 29, 29);
+  --color-destructive-foreground: rgb(243, 244, 246);
 
-  --color-border: rgb(41, 48, 60);
-  --color-input: rgb(41, 48, 60);
-  --color-ring: rgb(205, 212, 255);
+  --color-border: rgb(51, 65, 85);
+  --color-input: rgb(51, 65, 85);
+  --color-ring: rgb(147, 197, 253);
 
-  --color-sidebar-background: rgb(13, 14, 15);
-  --color-sidebar-foreground: rgb(245, 245, 245);
-  --color-sidebar-primary: rgb(67, 108, 255);
+  --color-sidebar-background: rgb(15, 23, 42); /* slate-900 */
+  --color-sidebar-foreground: rgb(203, 213, 225);
+  --color-sidebar-primary: rgb(96, 165, 250); /* blue-400 */
   --color-sidebar-primary-foreground: rgb(255, 255, 255);
-  --color-sidebar-accent: rgb(28, 29, 31);
-  --color-sidebar-accent-foreground: rgb(245, 245, 245);
-  --color-sidebar-border: rgb(28, 29, 31);
-  --color-sidebar-ring: rgb(88, 156, 255);
+  --color-sidebar-accent: rgb(30, 41, 59);
+  --color-sidebar-accent-foreground: rgb(243, 244, 246);
+  --color-sidebar-border: rgb(30, 41, 59);
+  --color-sidebar-ring: rgb(96, 165, 250);
 
-  --color-gradient-primary-start: rgb(0, 102, 255);
-  --color-gradient-primary-end: rgb(102, 0, 255);
-  --color-gradient-secondary-start: rgb(255, 59, 48);
-  --color-gradient-secondary-end: rgb(255, 66, 95);
-  --color-gradient-success-start: rgb(30, 193, 115);
-  --color-gradient-success-end: rgb(68, 224, 157);
-  --color-gradient-warning-start: rgb(255, 188, 28);
-  --color-gradient-warning-end: rgb(255, 142, 79);
-  --color-gradient-info-start: rgb(0, 153, 255);
-  --color-gradient-info-end: rgb(0, 204, 204);
-  --color-gradient-purple-start: rgb(102, 0, 255);
-  --color-gradient-purple-end: rgb(178, 102, 255);
+  --color-gradient-primary-start: rgb(96, 165, 250);
+  --color-gradient-primary-end: rgb(129, 140, 248);
 
-  --color-feature-red-start: rgb(255, 59, 48);
-  --color-feature-red-end: rgb(255, 66, 95);
-  --color-feature-blue-start: rgb(0, 102, 255);
-  --color-feature-blue-end: rgb(0, 153, 255);
-  --color-feature-green-start: rgb(30, 193, 115);
-  --color-feature-green-end: rgb(68, 224, 157);
-  --color-feature-yellow-start: rgb(255, 188, 28);
-  --color-feature-yellow-end: rgb(255, 142, 79);
-  --color-feature-purple-start: rgb(102, 0, 255);
-  --color-feature-purple-end: rgb(178, 102, 255);
-  --color-feature-gray-start: rgb(142, 151, 173);
-  --color-feature-gray-end: rgb(64, 67, 75);
+  --color-gradient-secondary-start: rgb(251, 113, 133);
+  --color-gradient-secondary-end: rgb(244, 63, 94);
+
+  --color-gradient-success-start: rgb(34, 197, 94);
+  --color-gradient-success-end: rgb(74, 222, 128);
+
+  --color-gradient-warning-start: rgb(251, 191, 36);
+  --color-gradient-warning-end: rgb(253, 224, 71);
+
+  --color-gradient-info-start: rgb(56, 189, 248);
+  --color-gradient-info-end: rgb(14, 165, 233);
+
+  --color-gradient-purple-start: rgb(165, 180, 252);
+  --color-gradient-purple-end: rgb(192, 132, 252);
+
+  --color-feature-red-start: rgb(239, 68, 68);
+  --color-feature-red-end: rgb(220, 38, 38);
+
+  --color-feature-blue-start: rgb(96, 165, 250);
+  --color-feature-blue-end: rgb(37, 99, 235);
+
+  --color-feature-green-start: rgb(34, 197, 94);
+  --color-feature-green-end: rgb(22, 163, 74);
+
+  --color-feature-yellow-start: rgb(251, 191, 36);
+  --color-feature-yellow-end: rgb(202, 138, 4);
+
+  --color-feature-purple-start: rgb(165, 180, 252);
+  --color-feature-purple-end: rgb(126, 34, 206);
+
+  --color-feature-gray-start: rgb(156, 163, 175);
+  --color-feature-gray-end: rgb(75, 85, 99);
 }
+
 html {
   scroll-behavior: smooth;
 }

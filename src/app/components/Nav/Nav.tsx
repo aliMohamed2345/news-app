@@ -1,6 +1,4 @@
 "use client";
-// import SearchArea from "@/app/Components/Nav/SearchArea";
-// import ResponsiveSearchArea from "@/app/Components/Nav/ResponsiveSearchArea";
 import { IoIosArrowUp } from "react-icons/io";
 import Theme from "./Theme";
 import SideMenu from "./SideMenu";
@@ -10,6 +8,8 @@ import { newsCategories } from "@/app/utils/data";
 import { useState, useRef, useEffect } from "react";
 import { FaHome, FaRegStar } from "react-icons/fa";
 import { IoMdTrendingUp } from "react-icons/io";
+import SearchArea from "./SearchArea";
+import ResponsiveSearchArea from "./ResponsiveSearchArea";
 const Nav = () => {
   const listRef = useRef<HTMLDivElement>(null);
   const path = usePathname();
@@ -45,12 +45,12 @@ const Nav = () => {
             </div>
           </div>
 
-          {/* <div className="hidden md:block "><SearchArea /></div> */}
+          <div className="hidden md:block "></div>
           <div className="hidden md:block ">
             <div className="flex items-center gap-4 font-bold">
               <Link
                 className={`${
-                  path.includes(`/`) &&
+                  path === "/" &&
                   `bg-gradient-to-r from-gradient-primary-start to-gradient-primary-end text-white`
                 } p-2 font-bold rounded-md hover:bg-background transition-all flex items-center gap-2`}
                 href="/"
@@ -60,7 +60,7 @@ const Nav = () => {
               </Link>
               <Link
                 className={`${
-                  path.includes(`/trending `) &&
+                  path.includes(`/trending`) &&
                   `bg-gradient-to-r from-gradient-primary-start to-gradient-primary-end text-white`
                 } p-2 font-bold rounded-md hover:bg-background transition-all flex items-center gap-2`}
                 href="/trending"
@@ -118,8 +118,9 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="gap-3 cursor-pointer flex items-center ">
-            {/* <ResponsiveSearchArea /> */}
+          <div className="gap-1.5 cursor-pointer flex items-center ">
+            <ResponsiveSearchArea />
+            <SearchArea />
             <Theme />
           </div>
         </div>
