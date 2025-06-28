@@ -50,7 +50,7 @@ const Nav = () => {
             <div className="flex items-center gap-4 font-bold">
               <Link
                 className={`${
-                  path.includes(`/`) &&
+                  path === "/" &&
                   `bg-gradient-to-r from-gradient-primary-start to-gradient-primary-end text-white`
                 } p-2 font-bold rounded-md hover:bg-background transition-all flex items-center gap-2`}
                 href="/"
@@ -60,7 +60,7 @@ const Nav = () => {
               </Link>
               <Link
                 className={`${
-                  path.includes(`/trending `) &&
+                  path.includes(`/trending`) &&
                   `bg-gradient-to-r from-gradient-primary-start to-gradient-primary-end text-white`
                 } p-2 font-bold rounded-md hover:bg-background transition-all flex items-center gap-2`}
                 href="/trending"
