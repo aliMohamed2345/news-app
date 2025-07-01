@@ -7,9 +7,9 @@ const initialState: ArticleCardsProps = {
   description: "",
   sourceName: "",
   sourceId: "",
-  articleHistory: "",
-  articleImage: "",
-  articleURL: "",
+  publishedAt: "",
+  urlToImage: "",
+  url: "",
   content: "",
 };
 
@@ -33,13 +33,13 @@ const ArticleSlice = createSlice({
       state.sourceId = action.payload;
     },
     setArticleHistory: (state, action) => {
-      state.articleHistory = action.payload;
+      state.publishedAt = action.payload;
     },
     setArticleImage: (state, action) => {
-      state.articleImage = action.payload;
+      state.urlToImage = action.payload;
     },
     setArticleURL: (state, action) => {
-      state.articleURL = action.payload;
+      state.url = action.payload;
     },
     setContent: (state, action) => {
       state.content = action.payload;
