@@ -30,7 +30,7 @@ export interface ArticleCardsProps {
   source?: { id: string; name: string };
 }
 
-const ArticleCards = ({
+const ArticleCard = ({
   title,
   description,
   author,
@@ -125,7 +125,7 @@ const ArticleCards = ({
       {/* Content Section */}
       <div className="flex flex-col justify-between p-4 h-full gap-3">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-medium px-3 py-1 bg-primary text-primary-foreground rounded-full">
+          <span className="text-xs px-3 py-1 bg-primary text-secondary-foreground font-extrabold rounded-full">
             {sourceName}
           </span>
           <button
@@ -162,4 +162,4 @@ const ArticleCards = ({
   );
 };
 
-export default ArticleCards;
+export default ArticleCard;

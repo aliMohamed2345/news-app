@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ArticleCardsProps } from "@/app/components/Articles/ArticleCards";
+import { ArticleCardsProps } from "@/app/components/Articles/ArticleCard";
 
 const initialState: ArticleCardsProps = {
   title: "",
