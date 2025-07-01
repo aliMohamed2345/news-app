@@ -1,74 +1,52 @@
 "use client";
-
-import ArticleCards, {
-  ArticleCardsProps,
-} from "@/app/components/Articles/ArticleCards";
-import ArticleLoadingSkeleton from "@/app/components/Articles/ArticlesLoadingSkeleton";
-import { useFetch } from "@/app/hooks/useFetch";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaFire } from "react-icons/fa";
+import { FiTrendingUp } from "react-icons/fi";
+import { AiFillStar } from "react-icons/ai";
+import ArticlesGrid from "@/app/components/Articles/ArticlesGrid";
 const Trending = () => {
-  const [page, setPage] = useState<number>(1);
-  const { data, loading, error } = useFetch<{
-    status: string;
-    articles: ArticleCardsProps[];
-  }>({
-    url: `${process.env.NEXT_PUBLIC_NEWS_BASE_URL}/top-headlines?apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&country=us&page=${page}`,
-  });
-  console.log(setPage);
-  if (loading) return <ArticleLoadingSkeleton numOfElements={15} />;
-
-  if (error || !data || data.status !== "ok") {
-    return <p className="text-center text-red-500">Failed to load articles.</p>;
-  }
-  console.log(data.articles);
-  const articles: ArticleCardsProps[] = data.articles.map((article) => ({
-    title: article.title,
-    description: article.description,
-    content: article.content,
-    author: article.author ?? "Unknown",
-    sourceName: article.source?.name ?? "Unknown",
-    sourceId: article.source?.id ?? "",
-    urlToImage: article.urlToImage ?? "",
-    publishedAt: article.publishedAt,
-    url: article.url,
-  }));
-  console.log(articles);
-
   return (
-    <section className="pt-16">
-      <div className="container mx-auto max-w-7xl px-4">
-        <h1 className="text-2xl font-bold mb-6">Trending News</h1>
+    <section className="pt-17">
+      <div className="container mx-auto w-full px-4">
+        {/* Hero Section */}
+        <motion.div
+          className="relative overflow-hidden bg-gradient-to-r from-gradient-secondary-start  to-gradient-secondary-end text-white rounded-b-xl mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <motion.div
+              className="text-center space-y-6"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="flex justify-center items-center gap-5 mb-6">
+                <div className="w-16 h-16 bg-background/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-105 transition-all">
+                  <FaFire className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-12 h-12 bg-background/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-105 transition-all text-primary">
+                  <FiTrendingUp className="h-6 w-6 text-white" />
+                </div>
+                <div className="w-14 h-14 bg-background/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-105 transition-all">
+                  <AiFillStar className="h-7 w-7 text-white" />
+                </div>
+              </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {articles.map((article, index) => {
-            const {
-              publishedAt,
-              urlToImage,
-              url,
-              author,
-              content,
-              description,
-              sourceId,
-              sourceName,
-              title,
-            } = article;
-            return (
-              <ArticleCards
-                key={index}
-                publishedAt={publishedAt}
-                urlToImage={urlToImage}
-                url={url}
-                content={content}
-                author={author}
-                description={description}
-                sourceId={sourceId}
-                sourceName={sourceName}
-                title={title}
-              />
-            );
-          })}
-        </div>
+              <h1 className="text-5xl md:text-7xl font-bold bg-white bg-clip-text text-transparent">
+                Trending Now
+              </h1>
+              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+                Discover the most popular stories and breaking news that
+                everyone is talking about
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
+      <ArticlesGrid type={`trending`} />
     </section>
   );
 };
