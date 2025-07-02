@@ -4,19 +4,7 @@ import { calculatedRemainingTime } from "@/app/utils/helper";
 import { IoBookmarkOutline, IoBookmark } from "react-icons/io5";
 import { MdAccessTime } from "react-icons/md";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
-import {
-  setArticleHistory,
-  setAuthor,
-  setTitle,
-  setArticleImage,
-  setArticleURL,
-  setContent,
-  setDescription,
-  setSourceId,
-  setSourceName,
-} from "@/app/redux/Slices/ArticleSlice";
 export interface ArticleCardsProps {
   title: string;
   description: string;
@@ -41,20 +29,8 @@ const ArticleCard = ({
   publishedAt,
   content,
 }: ArticleCardsProps) => {
-  const dispatch = useDispatch();
   const [isBookMarked, setIsBookMarked] = useState(false);
 
-  const handleDispatchData = () => {
-    dispatch(setArticleHistory(publishedAt));
-    dispatch(setTitle(title));
-    dispatch(setAuthor(author));
-    dispatch(setContent(content));
-    dispatch(setDescription(description));
-    dispatch(setSourceId(sourceId));
-    dispatch(setSourceName(sourceName));
-    dispatch(setArticleImage(urlToImage));
-    dispatch(setArticleURL(url));
-  };
   // Check localStorage on initial load
   useEffect(() => {
     const storedArticles = localStorage.getItem("bookedArticles");
@@ -108,8 +84,20 @@ const ArticleCard = ({
   };
   return (
     <Link
-      onClick={handleDispatchData}
-      href={`/articles/${`${btoa(url).slice(10, 20)}`}`} // encode the url to base 64 and pass it to the url
+      href={{
+        pathname: `/articles/${`${btoa(url).slice(10, 20)}`}`, //encode the url to base 64 and pass it to the url
+        query: {
+          publishedAt,
+          sourceId,
+          sourceName,
+          url,
+          urlToImage,
+          description,
+          title,
+          author,
+          content,
+        },
+      }}
       className="bg-secondary border-2 border-transparent hover:border-primary transition-all rounded-xl overflow-hidden shadow-sm hover:shadow-lg duration-300 group flex flex-col h-full"
     >
       {/* Image Section */}

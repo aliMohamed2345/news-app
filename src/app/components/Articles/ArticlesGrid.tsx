@@ -116,7 +116,7 @@ const ArticlesGrid = ({
       `${q ? `&q=${encodeURIComponent(q)}` : ""}`
     );
   }, [apiType, PAGE_SIZE, page, category, language, country, q]);
-
+console.log(URL)
   // Reset state when filters change
   useEffect(() => {
     setArticles([]);
@@ -197,7 +197,8 @@ const ArticlesGrid = ({
             title,
             url,
             urlToImage,
-            source,
+            sourceId,
+            sourceName,
           } = article;
           const isLast = index === articles.length - 1;
           return (
@@ -210,9 +211,8 @@ const ArticlesGrid = ({
                 title={title}
                 url={url}
                 urlToImage={urlToImage}
-                source={source}
-                sourceId={source?.id}
-                sourceName={source?.name}
+                sourceId={sourceId}
+                sourceName={sourceName}
               />
             </div>
           );

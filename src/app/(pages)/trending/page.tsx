@@ -46,7 +46,7 @@ const Trending = () => {
           </div>
         </motion.div>
       </div>
-      <ArticlesGrid type={`trending`} />
+      <ArticlesGrid type={`trending`} country={`us`} />
     </section>
   );
 };
