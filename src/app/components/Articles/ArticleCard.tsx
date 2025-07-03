@@ -8,24 +8,22 @@ import Link from "next/link";
 export interface ArticleCardsProps {
   title: string;
   description: string;
-  author: string;
   sourceName?: string;
-  sourceId?: string;
+  sourceURL?: string;
   url: string;
-  urlToImage: string;
+  image: string;
   publishedAt: string;
   content: string;
-  source?: { id: string; name: string };
+  source?: { url: string; name: string };
 }
 
 const ArticleCard = ({
   title,
   description,
-  author,
   sourceName,
-  sourceId,
+  sourceURL,
   url,
-  urlToImage,
+  image,
   publishedAt,
   content,
 }: ArticleCardsProps) => {
@@ -45,7 +43,7 @@ const ArticleCard = ({
     }
   }, [url]);
 
-  const handleBookmarkClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleChangeBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const storedArticles = localStorage.getItem("bookedArticles");
@@ -67,14 +65,13 @@ const ArticleCard = ({
     } else {
       //save this article to local storage and show it in the bookmark pag
       bookedArticles.push({
-        source: { id: sourceId ?? "", name: sourceName ?? "" },
+        source: { url: sourceURL ?? "", name: sourceName ?? "" },
         title,
         description,
-        author,
         sourceName,
-        sourceId,
+        sourceURL,
         url,
-        urlToImage,
+        image,
         publishedAt,
         content,
       });
@@ -88,14 +85,14 @@ const ArticleCard = ({
         pathname: `/articles/${`${btoa(url).slice(10, 20)}`}`, //encode the url to base 64 and pass it to the url
         query: {
           publishedAt,
-          sourceId,
+          sourceURL,
           sourceName,
           url,
-          urlToImage,
+          image,
           description,
           title,
-          author,
           content,
+          isBookMarked,
         },
       }}
       className="bg-secondary border-2 border-transparent hover:border-primary transition-all rounded-xl overflow-hidden shadow-sm hover:shadow-lg duration-300 group flex flex-col h-full"
@@ -104,7 +101,7 @@ const ArticleCard = ({
       <span>
         <img
           loading="lazy"
-          src={urlToImage || "/fallback.jpg"}
+          src={image || "/fallback.jpg"}
           alt={title}
           className="w-full h-48 object-cover group-hover:scale-105 group-hover:opacity-90 transition-all duration-300"
         />
@@ -117,7 +114,7 @@ const ArticleCard = ({
             {sourceName}
           </span>
           <button
-            onClick={(e) => handleBookmarkClick(e)}
+            onClick={(e) => handleChangeBookmark(e)}
             className="p-1.5 rounded-md hover:bg-accent transition cursor-pointer text-primary "
           >
             {isBookMarked ? (
@@ -143,7 +140,6 @@ const ArticleCard = ({
             <MdAccessTime className="text-primary" />
             {calculatedRemainingTime(publishedAt)}
           </span>
-          <span>By {author || "Unknown"}</span>
         </div>
       </div>
     </Link>

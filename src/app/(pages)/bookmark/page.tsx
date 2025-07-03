@@ -47,27 +47,25 @@ const BookMark = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 py-10">
             {storedArticles.map((article) => {
               const {
-                author,
                 title,
                 content,
                 description,
                 publishedAt,
                 source,
                 url,
-                urlToImage,
+                image,
               } = article;
               return (
                 <ArticleCard
                   key={article.url}
                   content={content}
-                  author={author ?? ""}
                   title={title}
                   description={description}
                   publishedAt={publishedAt}
-                  sourceId={source?.id}
+                  sourceURL={source?.url}
                   sourceName={source?.name}
                   url={url}
-                  urlToImage={urlToImage ?? ""}
+                  image={image ?? ""}
                 />
               );
             })}
