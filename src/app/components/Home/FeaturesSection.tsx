@@ -28,7 +28,7 @@ const FeaturesSection = () => {
             const isEven = index % 2 === 0;
             return (
               <motion.div
-                className="group cursor-pointer shadow-md hover:shadow-xl transition-all border-border border-2 hover:border-primary overflow-hidden rounded-lg shadow-md bg-background"
+                className="group cursor-pointer shadow-md hover:shadow-xl transition-all border-border border-2 hover:border-primary overflow-hidden rounded-lg bg-background"
                 key={index}
                 initial={{ opacity: 0, x: isEven ? -60 : 60 }}
                 whileInView={{ opacity: 1, x: 0 }}
