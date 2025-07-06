@@ -1,11 +1,14 @@
 import Link from "next/link";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, ReactNode } from "react";
 import { ArticleCardsProps } from "./ArticleCard";
 import useInfiniteScroll from "@/app/hooks/useInfinityScroll";
 import ArticleCard from "./ArticleCard";
 import ArticleLoadingSkeleton from "./ArticlesLoadingSkeleton";
 
 interface ArticlesGridProps {
+  OnEmptyComponent?: ReactNode;
+  from?: string;
+  to?: string;
   PAGE_SIZE?: number;
   type: "general" | "trending";
   category?:
@@ -27,68 +30,42 @@ interface ArticlesGridProps {
     | "nl"
     | "no"
     | "pt"
+    | "ro"
     | "ru"
     | "sv"
-    | "ud"
     | "zh";
+
   country?:
-    | "ae"
-    | "ar"
-    | "at"
     | "au"
-    | "be"
-    | "bg"
     | "br"
     | "ca"
-    | "ch"
     | "cn"
-    | "co"
-    | "cu"
-    | "cz"
-    | "de"
     | "eg"
     | "fr"
-    | "gb"
+    | "de"
     | "gr"
     | "hk"
-    | "hu"
-    | "id"
+    | "in"
     | "ie"
     | "il"
-    | "in"
     | "it"
     | "jp"
-    | "kr"
-    | "lt"
-    | "lv"
-    | "ma"
-    | "mx"
-    | "my"
-    | "ng"
     | "nl"
     | "no"
-    | "nz"
     | "ph"
-    | "pl"
     | "pt"
     | "ro"
-    | "rs"
     | "ru"
-    | "sa"
-    | "se"
     | "sg"
-    | "si"
-    | "sk"
-    | "th"
-    | "tr"
+    | "es"
+    | "se"
+    | "ch"
     | "tw"
     | "ua"
-    | "us"
-    | "ve"
-    | "za";
+    | "gb"
+    | "us";
   q?: string;
 }
-
 const ArticlesGrid = ({
   PAGE_SIZE = 10,
   type = "general",
@@ -96,6 +73,9 @@ const ArticlesGrid = ({
   language,
   country,
   q,
+  from,
+  to,
+  OnEmptyComponent,
 }: ArticlesGridProps) => {
   const [articles, setArticles] = useState<ArticleCardsProps[]>([]);
   const [page, setPage] = useState(1);
@@ -113,10 +93,11 @@ const ArticlesGrid = ({
       `${category ? `&category=${category}` : ""}` +
       `${language ? `&language=${language}` : ""}` +
       `${country ? `&country=${country}` : ""}` +
-      `${q ? `&q=${encodeURIComponent(q)}` : ""}`
+      `${q ? `&q=${encodeURIComponent(q)}` : ""}` +
+      `${from ? `&from=${from}` : ""}` +
+      `${to ? `&to=${to}` : ""}`
     );
-  }, [apiType, PAGE_SIZE, page, category, language, country, q]);
-  console.log(URL);
+  }, [apiType, PAGE_SIZE, page, category, language, country, q, from, to]);
   // Reset state when filters change
   useEffect(() => {
     setArticles([]);
@@ -138,32 +119,25 @@ const ArticlesGrid = ({
         }
 
         const data = await response.json();
-
-        const newArticles = data.articles.map((article: ArticleCardsProps) => ({
-          title: article.title,
-          description: article.description,
-          content: article.content,
-          sourceName: article.source?.name ?? "Unknown",
-          sourceURL: article.source?.url ?? "",
-          image: article.image ?? "",
-          publishedAt: article.publishedAt,
-          url: article.url,
-        }));
+        console.log(data?.articles?.length);
+        const newArticles = data.articles?.map(
+          (article: ArticleCardsProps) => ({
+            title: article.title,
+            description: article.description,
+            content: article.content,
+            sourceName: article.source?.name ?? "Unknown",
+            sourceURL: article.source?.url ?? "",
+            image: article.image ?? "",
+            publishedAt: article.publishedAt,
+            url: article.url,
+          })
+        );
         setArticles(newArticles);
-        // remove the duplicated data
-
-        // setArticles((prev) => {
-        // const existingUrls = new Set(prev.map((a) => a.url));
-        // const filtered = newArticles.filter(
-        // (a: ArticleCardsProps) => !existingUrls.has(a.url)
-        // );
-        // return [...prev, ...filtered];
-        //   }
 
         const totalPagesFromAPI = Math.ceil(data.totalArticles / PAGE_SIZE);
         setTotalPages(totalPagesFromAPI);
 
-        if (page >= totalPagesFromAPI || newArticles.length === 0) {
+        if (page >= totalPagesFromAPI || newArticles?.length === 0) {
           setHasMore(false);
         }
         setHasMore(false);
@@ -179,12 +153,14 @@ const ArticlesGrid = ({
       fetchArticles();
     }
   }, [page, hasMore, PAGE_SIZE, URL]);
-
+  if (articles?.length === 0) {
+    return OnEmptyComponent ?? null;
+  }
   return (
-    <div className="max-w-7xl mx-auto px-4 container">
+    <div className="max-w-7xl mx-auto px-4 container py-5">
       {/* Articles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {articles.map((article, index) => {
+        {articles?.map((article, index) => {
           const {
             content,
             description,
@@ -217,7 +193,7 @@ const ArticlesGrid = ({
       {loading && <ArticleLoadingSkeleton numOfElements={PAGE_SIZE} />}
 
       {/* No more articles */}
-      {!hasMore && (
+      {!hasMore && articles?.length === 0 && (
         <Link
           href={"/"}
           className="text-center block text-destructive-foreground bg-destructive rounded-full p-3 text-xl my-6 w-fit mx-auto hover:opacity-90 cursor-pointer"

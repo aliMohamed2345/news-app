@@ -1,11 +1,13 @@
 "use client";
 import { IoSearch, IoClose } from "react-icons/io5";
 import React, { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SearchArea = () => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const handleOpen = () => {
     setIsOpenSearch(true);
@@ -13,7 +15,10 @@ const SearchArea = () => {
   };
   const handleSearch = () => {
     if (!setIsOpenSearch && inputValue.trim() === "") return;
-    console.log(`Searching for: ${inputValue}`);
+    else if (inputValue.trim()) {
+      router.push(`/search?q=${inputValue}`);
+      setInputValue("");
+    }
   };
 
   const handleClose = (e: React.MouseEvent) => {
