@@ -1,41 +1,32 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { IoSearch, IoClose } from "react-icons/io5";
-
+import { useRouter } from "next/navigation";
 const ResponsiveSearchArea = () => {
   const SearchAreaRef = useRef<HTMLDivElement>(null);
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
-
+  const router = useRouter();
   const handleClose = () => {
     setIsOpenSearch(false);
     setInputValue("");
   };
   const handleSearch = () => {
-    console.log(`Searching for: ${inputValue}`);
+    if (!setIsOpenSearch && inputValue.trim() === "") return;
+    else if (inputValue.trim()) {
+      router.push(`/search?q=${inputValue}`);
+      setInputValue("");
+      setIsOpenSearch(false);
+    }
   };
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
       setInputValue("");
+      setIsOpenSearch(false);
     }
     if (e.key === "Enter") {
       handleSearch();
     }
   };
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        SearchAreaRef.current &&
-        !SearchAreaRef.current.contains(e.target as Node)
-      )
-        setIsOpenSearch(false);
-      setInputValue("");
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
   return (
     <>
       <div
@@ -57,7 +48,7 @@ const ResponsiveSearchArea = () => {
         <div className="relative flex items-center w-full h-full">
           <button
             onClick={handleClose}
-            className="-top-6 -right-2.5 absolute z-10 text-lg cursor-pointer text-primary"
+            className="-top-6 -right-2.5 absolute z-10 text-lg cursor-pointer text-primary hover:bg-accent transition-all rounded-full p-0.5"
           >
             <IoClose />
           </button>

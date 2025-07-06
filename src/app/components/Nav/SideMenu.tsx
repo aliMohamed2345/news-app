@@ -13,7 +13,6 @@ const SideMenu = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isCategoryListOpen, setIsCategoryListOpen] = useState<boolean>(false);
   const path = usePathname();
-  console.log(isCategoryListOpen);
 
   const closeSideMenu = () => {
     setIsCategoryListOpen(false);

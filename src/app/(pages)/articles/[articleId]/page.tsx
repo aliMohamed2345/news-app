@@ -78,7 +78,6 @@ const ArticleId = () => {
     }
   };
 
-  console.log({ sourceURL, sourceName });
 
   return (
     <section className="min-h-screen mx-auto container px-2 py-20 max-w-4xl">
