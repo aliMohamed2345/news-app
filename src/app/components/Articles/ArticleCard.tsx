@@ -101,7 +101,7 @@ const ArticleCard = ({
       <span>
         <img
           loading="lazy"
-          src={image || "/fallback.jpg"}
+          src={image || "/image-not-found.png"}
           alt={title}
           className="w-full h-48 object-cover group-hover:scale-105 group-hover:opacity-90 transition-all duration-300"
         />
