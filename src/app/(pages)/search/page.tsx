@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import FilterSearch from "@/app/components/Search/FilterSearch";
 import NoResults from "@/app/components/Articles/NoResults";
 import { countries, languages } from "@/app/utils/data";
+import { useDebounce } from "@/app/hooks/useDebounce";
 type CountryObject = { [key: string]: string };
 export type SupportedCountry =
   | "nl"
@@ -45,7 +46,8 @@ const Search = () => {
   const dateTo = useSearchParams().get("dateTo") || "";
   const [inputValue, setInputValue] = useState<string>(query);
   const router = useRouter();
-
+  //implement the debounce effect for better searching performance 
+  const debounceValue = useDebounce(inputValue, 1000);
   const getLanguageCode = (languageName: string) => {
     const found = languages.find(
       (langObj) =>
@@ -108,7 +110,7 @@ const Search = () => {
       <ArticlesGrid
         OnEmptyComponent={<NoResults />}
         type="general"
-        q={inputValue}
+        q={debounceValue}
         language={getLanguageCode(language)}
         country={getCountryCode(country) as SupportedCountry}
         from={dateFrom ?? ""}
